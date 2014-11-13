@@ -525,7 +525,7 @@ public:
       ids.push_back(i);
     }
 
-    cout << "Work with " << points.size() << " points" << endl;
+    // cout << "Work with " << points.size() << " points" << endl; //edited 
   }
 
   inline void setRadius(Scalar radius) {
@@ -1517,7 +1517,7 @@ void MatchSuper4PCSImpl::Initialize(const std::vector<Point3D>& P,
   }
   else
   {
-      cout << "(P) More samples requested than available: use whole cloud" << endl;
+      // cout << "(P) More samples requested than available: use whole cloud" << endl; // edited
       sampled_P_3D_ = P;
   }
 
@@ -1538,7 +1538,7 @@ void MatchSuper4PCSImpl::Initialize(const std::vector<Point3D>& P,
   }
   else
   {
-      cout << "(Q) More samples requested than available: use whole cloud" << endl;
+      //cout << "(Q) More samples requested than available: use whole cloud" << endl; // edited
       sampled_Q_3D_ = Q;
   }
 
@@ -1632,7 +1632,7 @@ void MatchSuper4PCSImpl::Initialize(const std::vector<Point3D>& P,
   if (number_of_trials_ < kMinNumberOfTrials)
     number_of_trials_ = kMinNumberOfTrials;
 
-  printf("norm_max_dist: %f\n", options_.delta);
+  //printf("norm_max_dist: %f\n", options_.delta); // edited
   current_trial_ = 0;
   best_LCP_ = 0.0;
   Q_copy_ = Q;
@@ -1663,8 +1663,8 @@ bool MatchSuper4PCSImpl::Perform_N_steps(int n, cv::Mat* transformation,
     float fraction_time = static_cast<float>(clock() - t0) / 1000000.0 /
                           options_.max_time_seconds;
     float fraction = max(fraction_time, fraction_try);
-    printf("done: %d%c best: %f                  \r",
-           static_cast<int>(fraction * 100), '%', best_LCP_);
+    //printf("done: %d%c best: %f                  \r",
+    //       static_cast<int>(fraction * 100), '%', best_LCP_); // edited
     fflush(stdout);
     // ok means that we already have the desired LCP.
     if (ok || i > number_of_trials_ || fraction > 0.99) break;
