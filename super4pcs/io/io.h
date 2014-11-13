@@ -10,8 +10,8 @@
 
 #include "Eigen/Core"
 
-#include <sys/time.h>
-#include <unistd.h>
+#include <time.h> // edited
+#include <io.h> // edited <unistd.h>
 #include <stdlib.h>
 
 

@@ -51,6 +51,8 @@
 #include "utils.h"
 #include "chealpix.h"
 
+#include <vector> // edited
+
 /*!
   Work only in 3D, based on healpix.
   Scalar are constrained to be double

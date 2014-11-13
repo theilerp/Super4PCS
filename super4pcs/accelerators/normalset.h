@@ -49,6 +49,7 @@
 #define _INDEXED_NORMAL_SET_H_
 
 #include "utils.h"
+#include <array> // edited
 
 /*!
   Normal set indexed by a position in euclidean space.

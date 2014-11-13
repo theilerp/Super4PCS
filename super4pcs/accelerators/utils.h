@@ -58,7 +58,7 @@ constexpr base_t POW(base_t base, expo_t expo)
 
 
 template<class Point>
-constexpr inline int
+const inline int // edited constexpr
 UnrollIndexLoop(const Point& coord, int cdim, int gsize){            
   return (cdim != 0) 
     ? ( int(std::floor(coord[cdim]))*POW(gsize, cdim) + 

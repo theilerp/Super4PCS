@@ -49,6 +49,10 @@
 
 #include <opencv2/core/core.hpp>
 
+#define _USE_MATH_DEFINES // edited
+#include <math.h> // edited
+#include <time.h> // edited
+
 namespace match_4pcs {
 
 namespace internal{

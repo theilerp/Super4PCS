@@ -32,6 +32,13 @@
 #ifndef CHEALPIX_H
 #define CHEALPIX_H
 
+// edited
+#ifdef chealpix_EXPORTS
+#define CHEALPIX_API __declspec(dllexport)
+#else
+#define CHEALPIX_API __declspec(dllimport)
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -57,51 +64,51 @@ extern "C" {
 /* ---------------- */
 /*! Sets \a *ipix to the pixel number in NEST scheme at resolution \a nside,
     which contains the position \a theta, \a phi. */
-void ang2pix_nest(long nside, double theta, double phi, long *ipix);
+CHEALPIX_API void ang2pix_nest(long nside, double theta, double phi, long *ipix);
 /*! Sets \a *ipix to the pixel number in RING scheme at resolution \a nside,
     which contains the position \a theta, \a phi. */
-void ang2pix_ring(long nside, double theta, double phi, long *ipix);
+CHEALPIX_API void ang2pix_ring(long nside, double theta, double phi, long *ipix);
 
 /*! Sets \a theta and \a phi to the angular position of the center of pixel
     \a ipix in NEST scheme at resolution \a nside. */
-void pix2ang_nest(long nside, long ipix, double *theta, double *phi);
+CHEALPIX_API void pix2ang_nest(long nside, long ipix, double *theta, double *phi);
 /*! Sets \a theta and \a phi to the angular position of the center of pixel
     \a ipix in NEST scheme at resolution \a nside. */
-void pix2ang_ring(long nside, long ipix, double *theta, double *phi);
+CHEALPIX_API void pix2ang_ring(long nside, long ipix, double *theta, double *phi);
 
 /*! Computes the RING pixel index of pixel \a ipnest at resolution \a nside
     and returns it in \a *ipring. On error, \a *ipring is set to -1. */
-void nest2ring(long nside, long ipnest, long *ipring);
+CHEALPIX_API void nest2ring(long nside, long ipnest, long *ipring);
 /*! Computes the NEST pixel index of pixel \a ipring at resolution \a nside
     and returns it in \a *ipring. On error, \a *ipnest is set to -1. */
-void ring2nest(long nside, long ipring, long *ipnest);
+CHEALPIX_API void ring2nest(long nside, long ipring, long *ipnest);
 
 /*! Returns \a 12*nside*nside. */
-long nside2npix(long nside);
+CHEALPIX_API long nside2npix(long nside);
 /*! Returns \a sqrt(npix/12) if this is an integer number, otherwise \a -1. */
-long npix2nside(long npix);
+CHEALPIX_API long npix2nside(long npix);
 
 /*! Computes a normalized Cartesian vector pointing in the same direction as
     \a theta, \a phi, and stores it in \a vec. \a vec must point to storage
     sufficient for at least three doubles. */
-void ang2vec(double theta, double phi, double *vec);
+CHEALPIX_API void ang2vec(double theta, double phi, double *vec);
 /*! Computes the angles \a *theta and \a *phi describing the same directions
     as the Cartesian vector \a vec. \a vec need not be normalized. */
-void vec2ang(const double *vec, double *theta, double *phi);
+CHEALPIX_API void vec2ang(const double *vec, double *theta, double *phi);
 
 /*! Sets \a *ipix to the pixel number in NEST scheme at resolution \a nside,
     which contains the direction described the Cartesian vector \a vec. */
-void vec2pix_nest(long nside, const double *vec, long *ipix);
+CHEALPIX_API void vec2pix_nest(long nside, const double *vec, long *ipix);
 /*! Sets \a *ipix to the pixel number in RING scheme at resolution \a nside,
     which contains the direction described the Cartesian vector \a vec. */
-void vec2pix_ring(long nside, const double *vec, long *ipix);
+CHEALPIX_API void vec2pix_ring(long nside, const double *vec, long *ipix);
 
 /*! Sets \a vec to the Cartesian vector pointing in the direction of the center
     of pixel \a ipix in NEST scheme at resolution \a nside. */
-void pix2vec_nest(long nside, long ipix, double *vec);
+CHEALPIX_API void pix2vec_nest(long nside, long ipix, double *vec);
 /*! Sets \a vec to the Cartesian vector pointing in the direction of the center
     of pixel \a ipix in RING scheme at resolution \a nside. */
-void pix2vec_ring(long nside, long ipix, double *vec);
+CHEALPIX_API void pix2vec_ring(long nside, long ipix, double *vec);
 
 /* operations on Nside values up to 2^29 */
 
@@ -112,54 +119,54 @@ typedef long long hpint64;
 
 /*! Sets \a *ipix to the pixel number in NEST scheme at resolution \a nside,
     which contains the position \a theta, \a phi. */
-void ang2pix_nest64(hpint64 nside, double theta, double phi, hpint64 *ipix);
+CHEALPIX_API void ang2pix_nest64(hpint64 nside, double theta, double phi, hpint64 *ipix);
 /*! Sets \a *ipix to the pixel number in RING scheme at resolution \a nside,
     which contains the position \a theta, \a phi. */
-void ang2pix_ring64(hpint64 nside, double theta, double phi, hpint64 *ipix);
+CHEALPIX_API void ang2pix_ring64(hpint64 nside, double theta, double phi, hpint64 *ipix);
 
 /*! Sets \a theta and \a phi to the angular position of the center of pixel
     \a ipix in NEST scheme at resolution \a nside. */
-void pix2ang_nest64(hpint64 nside, hpint64 ipix, double *theta, double *phi);
+CHEALPIX_API void pix2ang_nest64(hpint64 nside, hpint64 ipix, double *theta, double *phi);
 /*! Sets \a theta and \a phi to the angular position of the center of pixel
     \a ipix in RING scheme at resolution \a nside. */
-void pix2ang_ring64(hpint64 nside, hpint64 ipix, double *theta, double *phi);
+CHEALPIX_API void pix2ang_ring64(hpint64 nside, hpint64 ipix, double *theta, double *phi);
 
 /*! Computes the RING pixel index of pixel \a ipnest at resolution \a nside
     and returns it in \a *ipring. On error, \a *ipring is set to -1. */
-void nest2ring64(hpint64 nside, hpint64 ipnest, hpint64 *ipring);
+CHEALPIX_API void nest2ring64(hpint64 nside, hpint64 ipnest, hpint64 *ipring);
 /*! Computes the NEST pixel index of pixel \a ipring at resolution \a nside
     and returns it in \a *ipring. On error, \a *ipnest is set to -1. */
-void ring2nest64(hpint64 nside, hpint64 ipring, hpint64 *ipnest);
+CHEALPIX_API void ring2nest64(hpint64 nside, hpint64 ipring, hpint64 *ipnest);
 
 /*! Returns \a 12*nside*nside. */
-hpint64 nside2npix64(hpint64 nside);
+CHEALPIX_API hpint64 nside2npix64(hpint64 nside);
 /*! Returns \a sqrt(npix/12) if this is an integer number, otherwise \a -1. */
-long npix2nside64(hpint64 npix);
+CHEALPIX_API long npix2nside64(hpint64 npix);
 
 /*! Sets \a *ipix to the pixel number in NEST scheme at resolution \a nside,
     which contains the direction described the Cartesian vector \a vec. */
-void vec2pix_nest64(hpint64 nside, const double *vec, hpint64 *ipix);
+CHEALPIX_API void vec2pix_nest64(hpint64 nside, const double *vec, hpint64 *ipix);
 /*! Sets \a *ipix to the pixel number in RING scheme at resolution \a nside,
     which contains the direction described the Cartesian vector \a vec. */
-void vec2pix_ring64(hpint64 nside, const double *vec, hpint64 *ipix);
+CHEALPIX_API void vec2pix_ring64(hpint64 nside, const double *vec, hpint64 *ipix);
 
 /*! Sets \a vec to the Cartesian vector pointing in the direction of the center
     of pixel \a ipix in NEST scheme at resolution \a nside. */
-void pix2vec_nest64(hpint64 nside, hpint64 ipix, double *vec);
+CHEALPIX_API void pix2vec_nest64(hpint64 nside, hpint64 ipix, double *vec);
 /*! Sets \a vec to the Cartesian vector pointing in the direction of the center
     of pixel \a ipix in RING scheme at resolution \a nside. */
-void pix2vec_ring64(hpint64 nside, hpint64 ipix, double *vec);
+CHEALPIX_API void pix2vec_ring64(hpint64 nside, hpint64 ipix, double *vec);
 
 /* FITS operations */
 /* --------------- */
 
-float *read_healpix_map (const char *infile, long *nside, char *coordsys,
+CHEALPIX_API float *read_healpix_map(const char *infile, long *nside, char *coordsys,
   char *ordering);
 
-void write_healpix_map (const float *signal, long nside, const char *filename,
+CHEALPIX_API void write_healpix_map(const float *signal, long nside, const char *filename,
   char nest, const char *coordsys);
 
-long get_fits_size(const char *filename, long *nside, char *ordering);
+CHEALPIX_API long get_fits_size(const char *filename, long *nside, char *ordering);
 
 /*! \} */
 

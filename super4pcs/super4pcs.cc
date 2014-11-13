@@ -1211,7 +1211,7 @@ double MatchSuper4PCSImpl::MeanDistance() {
   for (int i = 0; i < sampled_P_3D_.size(); ++i) {
     query_point << sampled_P_3D_[i].x, sampled_P_3D_[i].y, sampled_P_3D_[i].z;
 
-    typename Super4PCS::KdTree<Scalar>::Index resId =
+    /*typename*/ Super4PCS::KdTree<Scalar>::Index resId = // edited
     kd_tree_.doQueryRestrictedClosest(query_point, P_diameter_ * kDiameterFraction, i);
 
     if (resId != Super4PCS::KdTree<Scalar>::invalidIndex()) {
@@ -1255,7 +1255,7 @@ double MatchSuper4PCSImpl::Verify(const cv::Mat& rotation, const cv::Point3f& ce
 #ifdef TEST_GLOBAL_TIMINGS
     Timer t (true);
 #endif
-    typename Super4PCS::KdTree<Scalar>::Index resId =
+    /*typename*/ Super4PCS::KdTree<Scalar>::Index resId = // edited
     kd_tree_.doQueryRestrictedClosest(query_point, sq_eps);
 
 #ifdef TEST_GLOBAL_TIMINGS

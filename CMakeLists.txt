@@ -58,20 +58,28 @@ find_package( OpenCV REQUIRED core highgui)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 
-IF(DEFINED ANN_DIR)
-  set(ANN_INCLUDE_DIR "${ANN_DIR}/include")
-  include_directories( ${ANN_INCLUDE_DIR} )
+#IF(DEFINED ANN_DIR)
+#  set(ANN_INCLUDE_DIR "${ANN_DIR}/include")
+#  include_directories( ${ANN_INCLUDE_DIR} )
   
-  set(ANN_LIBS "${ANN_DIR}/lib/libANN.a")
-ENDIF(DEFINED ANN_DIR)
+#  set(ANN_LIBS "${ANN_DIR}/lib/libANN.a")
+#ENDIF(DEFINED ANN_DIR)
+
+# add ann
+include(FindPackageHandleStandardArgs)
+find_path(ANN_INCLUDE_DIR ANN/ANN.h PATH $ENV{ANN_DIR}/include)
+find_library(ANN_LIBS ann ANN PATHS $ENV{ANN_DIR}/lib)
+find_package_handle_standard_args(ANN DEFAULT_MSG ANN_LIBS ANN_INCLUDE_DIR)
+
+include_directories (${ANN_INCLUDE_DIR})
 
 
 ################################################################################
 ## Tests
 ################################################################################
 
-include(cmake/ConfigureTesting.cmake)
-add_subdirectory(tests EXCLUDE_FROM_ALL)
+#include(cmake/ConfigureTesting.cmake)
+#add_subdirectory(tests EXCLUDE_FROM_ALL)
 
 ################################################################################
 ## Project files
